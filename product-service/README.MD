@@ -1,0 +1,1 @@
+<h1>Product Service - Сервис продуктов</h1>
