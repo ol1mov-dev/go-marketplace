@@ -1,1 +1,0 @@
-ghz --insecure --proto ../proto/order/v1/order_v1.proto --call order.v1.OrderV1Service.CreateOrder --data-file data.json --rps 10000 --duration 60s --connections 100 --concurrency 200 --format html --output report.html 127.0.0.1:8082
