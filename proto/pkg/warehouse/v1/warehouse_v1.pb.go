@@ -702,8 +702,8 @@ const file_warehouse_v1_proto_rawDesc = "" +
 	"totalPages\"(\n" +
 	"\x16DeleteWarehouseRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\"\x0f\n" +
-	"\rEmptyResponse2\xb5\x03\n" +
-	"\x10WarehouseService\x12P\n" +
+	"\rEmptyResponse2\xb7\x03\n" +
+	"\x12WarehouseV1Service\x12P\n" +
 	"\x0fCreateWarehouse\x12$.warehouse.v1.CreateWarehouseRequest\x1a\x17.warehouse.v1.Warehouse\x12J\n" +
 	"\fGetWarehouse\x12!.warehouse.v1.GetWarehouseRequest\x1a\x17.warehouse.v1.Warehouse\x12P\n" +
 	"\x0fUpdateWarehouse\x12$.warehouse.v1.UpdateWarehouseRequest\x1a\x17.warehouse.v1.Warehouse\x12[\n" +
@@ -738,16 +738,16 @@ var file_warehouse_v1_proto_depIdxs = []int32{
 	8, // 0: warehouse.v1.Warehouse.created_at:type_name -> google.protobuf.Timestamp
 	8, // 1: warehouse.v1.Warehouse.updated_at:type_name -> google.protobuf.Timestamp
 	2, // 2: warehouse.v1.ListWarehousesResponse.warehouses:type_name -> warehouse.v1.Warehouse
-	0, // 3: warehouse.v1.WarehouseService.CreateWarehouse:input_type -> warehouse.v1.CreateWarehouseRequest
-	3, // 4: warehouse.v1.WarehouseService.GetWarehouse:input_type -> warehouse.v1.GetWarehouseRequest
-	1, // 5: warehouse.v1.WarehouseService.UpdateWarehouse:input_type -> warehouse.v1.UpdateWarehouseRequest
-	4, // 6: warehouse.v1.WarehouseService.ListWarehouses:input_type -> warehouse.v1.ListWarehousesRequest
-	6, // 7: warehouse.v1.WarehouseService.DeleteWarehouse:input_type -> warehouse.v1.DeleteWarehouseRequest
-	2, // 8: warehouse.v1.WarehouseService.CreateWarehouse:output_type -> warehouse.v1.Warehouse
-	2, // 9: warehouse.v1.WarehouseService.GetWarehouse:output_type -> warehouse.v1.Warehouse
-	2, // 10: warehouse.v1.WarehouseService.UpdateWarehouse:output_type -> warehouse.v1.Warehouse
-	5, // 11: warehouse.v1.WarehouseService.ListWarehouses:output_type -> warehouse.v1.ListWarehousesResponse
-	7, // 12: warehouse.v1.WarehouseService.DeleteWarehouse:output_type -> warehouse.v1.EmptyResponse
+	0, // 3: warehouse.v1.WarehouseV1Service.CreateWarehouse:input_type -> warehouse.v1.CreateWarehouseRequest
+	3, // 4: warehouse.v1.WarehouseV1Service.GetWarehouse:input_type -> warehouse.v1.GetWarehouseRequest
+	1, // 5: warehouse.v1.WarehouseV1Service.UpdateWarehouse:input_type -> warehouse.v1.UpdateWarehouseRequest
+	4, // 6: warehouse.v1.WarehouseV1Service.ListWarehouses:input_type -> warehouse.v1.ListWarehousesRequest
+	6, // 7: warehouse.v1.WarehouseV1Service.DeleteWarehouse:input_type -> warehouse.v1.DeleteWarehouseRequest
+	2, // 8: warehouse.v1.WarehouseV1Service.CreateWarehouse:output_type -> warehouse.v1.Warehouse
+	2, // 9: warehouse.v1.WarehouseV1Service.GetWarehouse:output_type -> warehouse.v1.Warehouse
+	2, // 10: warehouse.v1.WarehouseV1Service.UpdateWarehouse:output_type -> warehouse.v1.Warehouse
+	5, // 11: warehouse.v1.WarehouseV1Service.ListWarehouses:output_type -> warehouse.v1.ListWarehousesResponse
+	7, // 12: warehouse.v1.WarehouseV1Service.DeleteWarehouse:output_type -> warehouse.v1.EmptyResponse
 	8, // [8:13] is the sub-list for method output_type
 	3, // [3:8] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name

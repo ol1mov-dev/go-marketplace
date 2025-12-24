@@ -19,139 +19,177 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PaymentService_CreatePayment_FullMethodName = "/payment.v1.PaymentService/CreatePayment"
-	PaymentService_GetPayment_FullMethodName    = "/payment.v1.PaymentService/GetPayment"
+	PaymentV1Service_CreatePayment_FullMethodName = "/payment.v1.PaymentV1Service/CreatePayment"
+	PaymentV1Service_GetPayment_FullMethodName    = "/payment.v1.PaymentV1Service/GetPayment"
+	PaymentV1Service_MakePayment_FullMethodName   = "/payment.v1.PaymentV1Service/MakePayment"
 )
 
-// PaymentServiceClient is the client API for PaymentService service.
+// PaymentV1ServiceClient is the client API for PaymentV1Service service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type PaymentServiceClient interface {
+type PaymentV1ServiceClient interface {
 	CreatePayment(ctx context.Context, in *CreatePaymentRequest, opts ...grpc.CallOption) (*CreatePaymentResponse, error)
 	GetPayment(ctx context.Context, in *GetPaymentRequest, opts ...grpc.CallOption) (*GetPaymentResponse, error)
+	MakePayment(ctx context.Context, in *MakePaymentRequest, opts ...grpc.CallOption) (*EmptyResponse, error)
 }
 
-type paymentServiceClient struct {
+type paymentV1ServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewPaymentServiceClient(cc grpc.ClientConnInterface) PaymentServiceClient {
-	return &paymentServiceClient{cc}
+func NewPaymentV1ServiceClient(cc grpc.ClientConnInterface) PaymentV1ServiceClient {
+	return &paymentV1ServiceClient{cc}
 }
 
-func (c *paymentServiceClient) CreatePayment(ctx context.Context, in *CreatePaymentRequest, opts ...grpc.CallOption) (*CreatePaymentResponse, error) {
+func (c *paymentV1ServiceClient) CreatePayment(ctx context.Context, in *CreatePaymentRequest, opts ...grpc.CallOption) (*CreatePaymentResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreatePaymentResponse)
-	err := c.cc.Invoke(ctx, PaymentService_CreatePayment_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, PaymentV1Service_CreatePayment_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *paymentServiceClient) GetPayment(ctx context.Context, in *GetPaymentRequest, opts ...grpc.CallOption) (*GetPaymentResponse, error) {
+func (c *paymentV1ServiceClient) GetPayment(ctx context.Context, in *GetPaymentRequest, opts ...grpc.CallOption) (*GetPaymentResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetPaymentResponse)
-	err := c.cc.Invoke(ctx, PaymentService_GetPayment_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, PaymentV1Service_GetPayment_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// PaymentServiceServer is the server API for PaymentService service.
-// All implementations must embed UnimplementedPaymentServiceServer
-// for forward compatibility.
-type PaymentServiceServer interface {
-	CreatePayment(context.Context, *CreatePaymentRequest) (*CreatePaymentResponse, error)
-	GetPayment(context.Context, *GetPaymentRequest) (*GetPaymentResponse, error)
-	mustEmbedUnimplementedPaymentServiceServer()
+func (c *paymentV1ServiceClient) MakePayment(ctx context.Context, in *MakePaymentRequest, opts ...grpc.CallOption) (*EmptyResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EmptyResponse)
+	err := c.cc.Invoke(ctx, PaymentV1Service_MakePayment_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
-// UnimplementedPaymentServiceServer must be embedded to have
+// PaymentV1ServiceServer is the server API for PaymentV1Service service.
+// All implementations must embed UnimplementedPaymentV1ServiceServer
+// for forward compatibility.
+type PaymentV1ServiceServer interface {
+	CreatePayment(context.Context, *CreatePaymentRequest) (*CreatePaymentResponse, error)
+	GetPayment(context.Context, *GetPaymentRequest) (*GetPaymentResponse, error)
+	MakePayment(context.Context, *MakePaymentRequest) (*EmptyResponse, error)
+	mustEmbedUnimplementedPaymentV1ServiceServer()
+}
+
+// UnimplementedPaymentV1ServiceServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedPaymentServiceServer struct{}
+type UnimplementedPaymentV1ServiceServer struct{}
 
-func (UnimplementedPaymentServiceServer) CreatePayment(context.Context, *CreatePaymentRequest) (*CreatePaymentResponse, error) {
+func (UnimplementedPaymentV1ServiceServer) CreatePayment(context.Context, *CreatePaymentRequest) (*CreatePaymentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePayment not implemented")
 }
-func (UnimplementedPaymentServiceServer) GetPayment(context.Context, *GetPaymentRequest) (*GetPaymentResponse, error) {
+func (UnimplementedPaymentV1ServiceServer) GetPayment(context.Context, *GetPaymentRequest) (*GetPaymentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPayment not implemented")
 }
-func (UnimplementedPaymentServiceServer) mustEmbedUnimplementedPaymentServiceServer() {}
-func (UnimplementedPaymentServiceServer) testEmbeddedByValue()                        {}
+func (UnimplementedPaymentV1ServiceServer) MakePayment(context.Context, *MakePaymentRequest) (*EmptyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MakePayment not implemented")
+}
+func (UnimplementedPaymentV1ServiceServer) mustEmbedUnimplementedPaymentV1ServiceServer() {}
+func (UnimplementedPaymentV1ServiceServer) testEmbeddedByValue()                          {}
 
-// UnsafePaymentServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to PaymentServiceServer will
+// UnsafePaymentV1ServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to PaymentV1ServiceServer will
 // result in compilation errors.
-type UnsafePaymentServiceServer interface {
-	mustEmbedUnimplementedPaymentServiceServer()
+type UnsafePaymentV1ServiceServer interface {
+	mustEmbedUnimplementedPaymentV1ServiceServer()
 }
 
-func RegisterPaymentServiceServer(s grpc.ServiceRegistrar, srv PaymentServiceServer) {
-	// If the following call pancis, it indicates UnimplementedPaymentServiceServer was
+func RegisterPaymentV1ServiceServer(s grpc.ServiceRegistrar, srv PaymentV1ServiceServer) {
+	// If the following call pancis, it indicates UnimplementedPaymentV1ServiceServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&PaymentService_ServiceDesc, srv)
+	s.RegisterService(&PaymentV1Service_ServiceDesc, srv)
 }
 
-func _PaymentService_CreatePayment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _PaymentV1Service_CreatePayment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreatePaymentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PaymentServiceServer).CreatePayment(ctx, in)
+		return srv.(PaymentV1ServiceServer).CreatePayment(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PaymentService_CreatePayment_FullMethodName,
+		FullMethod: PaymentV1Service_CreatePayment_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PaymentServiceServer).CreatePayment(ctx, req.(*CreatePaymentRequest))
+		return srv.(PaymentV1ServiceServer).CreatePayment(ctx, req.(*CreatePaymentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PaymentService_GetPayment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _PaymentV1Service_GetPayment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetPaymentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PaymentServiceServer).GetPayment(ctx, in)
+		return srv.(PaymentV1ServiceServer).GetPayment(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PaymentService_GetPayment_FullMethodName,
+		FullMethod: PaymentV1Service_GetPayment_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PaymentServiceServer).GetPayment(ctx, req.(*GetPaymentRequest))
+		return srv.(PaymentV1ServiceServer).GetPayment(ctx, req.(*GetPaymentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// PaymentService_ServiceDesc is the grpc.ServiceDesc for PaymentService service.
+func _PaymentV1Service_MakePayment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MakePaymentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PaymentV1ServiceServer).MakePayment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PaymentV1Service_MakePayment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PaymentV1ServiceServer).MakePayment(ctx, req.(*MakePaymentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// PaymentV1Service_ServiceDesc is the grpc.ServiceDesc for PaymentV1Service service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var PaymentService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "payment.v1.PaymentService",
-	HandlerType: (*PaymentServiceServer)(nil),
+var PaymentV1Service_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "payment.v1.PaymentV1Service",
+	HandlerType: (*PaymentV1ServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "CreatePayment",
-			Handler:    _PaymentService_CreatePayment_Handler,
+			Handler:    _PaymentV1Service_CreatePayment_Handler,
 		},
 		{
 			MethodName: "GetPayment",
-			Handler:    _PaymentService_GetPayment_Handler,
+			Handler:    _PaymentV1Service_GetPayment_Handler,
+		},
+		{
+			MethodName: "MakePayment",
+			Handler:    _PaymentV1Service_MakePayment_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

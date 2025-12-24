@@ -78,7 +78,7 @@ message DeleteWarehouseRequest {
 message EmptyResponse {}
 
 // Сервис для управления складами
-service WarehouseService {
+service WarehouseV1Service {
   // Создать новый склад
   rpc CreateWarehouse(CreateWarehouseRequest) returns (Warehouse);
 

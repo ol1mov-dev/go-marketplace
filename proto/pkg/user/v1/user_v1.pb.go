@@ -333,11 +333,11 @@ func (x *GetUserResponse) GetUser() *User {
 type UpdateUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Username      string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
-	Email         string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
-	Password      string                 `protobuf:"bytes,4,opt,name=password,proto3" json:"password,omitempty"`
-	FirstName     string                 `protobuf:"bytes,5,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
-	LastName      string                 `protobuf:"bytes,6,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
+	Email         string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
+	Password      string                 `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
+	FirstName     string                 `protobuf:"bytes,4,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	LastName      string                 `protobuf:"bytes,5,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
+	PhoneNumber   string                 `protobuf:"bytes,6,opt,name=phone_number,json=phoneNumber,proto3" json:"phone_number,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -379,13 +379,6 @@ func (x *UpdateUserRequest) GetId() uint32 {
 	return 0
 }
 
-func (x *UpdateUserRequest) GetUsername() string {
-	if x != nil {
-		return x.Username
-	}
-	return ""
-}
-
 func (x *UpdateUserRequest) GetEmail() string {
 	if x != nil {
 		return x.Email
@@ -410,6 +403,13 @@ func (x *UpdateUserRequest) GetFirstName() string {
 func (x *UpdateUserRequest) GetLastName() string {
 	if x != nil {
 		return x.LastName
+	}
+	return ""
+}
+
+func (x *UpdateUserRequest) GetPhoneNumber() string {
+	if x != nil {
+		return x.PhoneNumber
 	}
 	return ""
 }
@@ -504,7 +504,6 @@ func (x *DeleteUserRequest) GetId() uint32 {
 
 type DeleteUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -539,13 +538,6 @@ func (*DeleteUserResponse) Descriptor() ([]byte, []int) {
 	return file_user_v1_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *DeleteUserResponse) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
-
 var File_user_v1_proto protoreflect.FileDescriptor
 
 const file_user_v1_proto_rawDesc = "" +
@@ -575,21 +567,20 @@ const file_user_v1_proto_rawDesc = "" +
 	"\x0eGetUserRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\rR\x02id\"4\n" +
 	"\x0fGetUserResponse\x12!\n" +
-	"\x04user\x18\x01 \x01(\v2\r.user.v1.UserR\x04user\"\xad\x01\n" +
+	"\x04user\x18\x01 \x01(\v2\r.user.v1.UserR\x04user\"\xb4\x01\n" +
 	"\x11UpdateUserRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\rR\x02id\x12\x1a\n" +
-	"\busername\x18\x02 \x01(\tR\busername\x12\x14\n" +
-	"\x05email\x18\x03 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x04 \x01(\tR\bpassword\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\rR\x02id\x12\x14\n" +
+	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1a\n" +
+	"\bpassword\x18\x03 \x01(\tR\bpassword\x12\x1d\n" +
 	"\n" +
-	"first_name\x18\x05 \x01(\tR\tfirstName\x12\x1b\n" +
-	"\tlast_name\x18\x06 \x01(\tR\blastName\"7\n" +
+	"first_name\x18\x04 \x01(\tR\tfirstName\x12\x1b\n" +
+	"\tlast_name\x18\x05 \x01(\tR\blastName\x12!\n" +
+	"\fphone_number\x18\x06 \x01(\tR\vphoneNumber\"7\n" +
 	"\x12UpdateUserResponse\x12!\n" +
 	"\x04user\x18\x01 \x01(\v2\r.user.v1.UserR\x04user\"#\n" +
 	"\x11DeleteUserRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\rR\x02id\".\n" +
-	"\x12DeleteUserResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess2\xa2\x02\n" +
+	"\x02id\x18\x01 \x01(\rR\x02id\"\x14\n" +
+	"\x12DeleteUserResponse2\xa2\x02\n" +
 	"\rUserV1Service\x12E\n" +
 	"\n" +
 	"CreateUser\x12\x1a.user.v1.CreateUserRequest\x1a\x1b.user.v1.CreateUserResponse\x12<\n" +

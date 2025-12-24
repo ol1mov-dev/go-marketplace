@@ -27,10 +27,10 @@ func ConnectPostgreSQL() error {
 		return fmt.Errorf("failed to open databases: %v", err)
 	}
 
-	db.SetMaxOpenConns(1000)                // Максимальное количество открытых соединений
-	db.SetMaxIdleConns(10)                  // Максимальное количество простаивающих соединений
-	db.SetConnMaxLifetime(30 * time.Minute) // Максимальное время жизни соединения
-	db.SetConnMaxIdleTime(5 * time.Minute)  // Максимальное время простоя соединения
+	db.SetMaxOpenConns(1000)
+	db.SetMaxIdleConns(10)
+	db.SetConnMaxLifetime(30 * time.Minute)
+	db.SetConnMaxIdleTime(5 * time.Minute)
 
 	// Проверка подключения
 	err = db.Ping()

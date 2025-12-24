@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  zookeeper:
+    extends:
+      file: ./kafka/config.yaml
+      service: zookeeper-base
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+
+  kafka:
+    extends:
+      file: ./kafka/config.yaml
+      service: kafka-base
+    container_name: kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+
+  kafka-ui:
+    extends:
+      file: ./kafka/config.yaml
+      service: kafka-ui-base
+    container_name: kafka-ui
+    depends_on:
+      - kafka
+    ports:
+      - "8080:8080"
+
+volumes:
+  zookeeper-data:
+  zookeeper-logs:
+  kafka-data:

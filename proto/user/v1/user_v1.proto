@@ -38,11 +38,11 @@ message GetUserResponse {
 
 message UpdateUserRequest {
   uint32 id = 1;
-  string username = 2;
-  string email = 3;
-  string password = 4;
-  string first_name = 5;
-  string last_name = 6;
+  string email = 2;
+  string password = 3;
+  string first_name = 4;
+  string last_name = 5;
+  string phone_number = 6;
 }
 
 message UpdateUserResponse {
@@ -54,7 +54,6 @@ message DeleteUserRequest {
 }
 
 message DeleteUserResponse {
-  bool success = 1;
 }
 
 // SERVICE

@@ -1,11 +1,10 @@
 -- +goose Up
 -- +goose StatementBegin
 CREATE TABLE payments (
-  payment_id BIGSERIAL PRIMARY KEY,
+  id BIGSERIAL PRIMARY KEY,
   order_id BIGINT NOT NULL,
   user_id BIGINT NOT NULL,
-  amount DECIMAL(19, 4) NOT NULL,
-  currency VARCHAR(3) NOT NULL,
+  total_sum DECIMAL(19, 4) NOT NULL,
   status_code SMALLINT NOT NULL DEFAULT 1,
   created_at TIMESTAMP NOT NULL DEFAULT NOW(),
   confirmed_at TIMESTAMP,
